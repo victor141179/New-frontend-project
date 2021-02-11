@@ -8,6 +8,7 @@ export default class ArticleList extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.fetchArticles();
   }
   render() {
@@ -26,7 +27,7 @@ export default class ArticleList extends Component {
 
   fetchArticles() {
     api.getArticles().then((articles) => {
-      console.log(articles);
+      // console.log(articles);
       this.setState({ articles });
     });
   }
