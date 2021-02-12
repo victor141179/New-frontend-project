@@ -8,9 +8,11 @@ export const getTopics = () => {
     });
 };
 
-export const getArticles = () => {
+export const getArticles = (sort_by) => {
   return axios
-    .get("https://victor-nc-news.herokuapp.com/api/articles")
+    .get("https://victor-nc-news.herokuapp.com/api/articles", {
+      params: { sort_by: sort_by },
+    })
     .then(({ data }) => {
       // console.log(data.articles);
       return data.articles;
@@ -29,10 +31,10 @@ export const getSingleArticle = (article_id) => {
 export const getCommentsByArticleId = (article_id) => {
   return axios
     .get(
-      `https://victor-nc-news.herokuapp.com/api/articles/${article_id}/comments`
+      `https://victor-nc-news.herokuapp.com/api/articles/${article_id}/comment`
     )
     .then(({ data }) => {
       return data.comments;
-      // console.log(data.comments);
+      console.log(data.comments);
     });
 };

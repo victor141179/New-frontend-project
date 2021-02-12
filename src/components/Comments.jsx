@@ -4,6 +4,8 @@ import * as api from "../api";
 export default class Comments extends Component {
   state = {
     comments: [],
+    sort_by: "created at",
+    newSortValue: "",
   };
 
   componentDidMount() {
