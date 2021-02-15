@@ -4,14 +4,20 @@ import * as api from "../api";
 export default class Comments extends Component {
   state = {
     comments: [],
-    sort_by: "created at",
-    newSortValue: "",
   };
 
   componentDidMount() {
-    console.log(this.props);
+    //console.log(this.props);
     this.fetchCommentsByArticleId(this.props.article_id);
   }
+
+  delete = (event) => {
+    console.dir(event);
+
+    api.deleteCommentsByCommentId(event.target.id).then(() => {
+      this.fetchCommentsByArticleId(this.props.article_id);
+    });
+  };
   render() {
     const { comments } = this.state;
     console.log(comments);
@@ -24,6 +30,9 @@ export default class Comments extends Component {
               <p>{comment.body}</p>
               <p>{comment.author_id}</p>
               <p>{comment.created_at}</p>
+              <button onClick={this.delete} id={comment.comment_id}>
+                Delete Comment
+              </button>
             </li>
           );
         })}
